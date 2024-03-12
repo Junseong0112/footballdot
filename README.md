@@ -1,8 +1,10 @@
-# React + Vite
+# 축구닷
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 제작의도
 
-Currently, two official plugins are available:
+축구를 좋아하는 1인으로써 전반적인 커뮤니티를 제작하고 싶어 기획함 일반적인 커뮤니티와 비슷하게 제작하며 게시판 및 피드를 가지고 축구의 정보를 공유하고 얘기하게끔 의도함
+전체적인 이용자와 실시간의 대화 기능도 추가할 예정
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 페이지 구조
+
+![page](https://github.com/Junseong0112/footballdot/assets/108931006/4f72712c-0419-44b9-8551-bde48e9dacf6)

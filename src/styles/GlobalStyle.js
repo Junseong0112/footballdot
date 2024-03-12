@@ -6,8 +6,15 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
-  html,
-  body{
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6{
+    font-weight: 700;
+  }
+  html{
     font-family: 'Pretendard-Regular', -apple-system, sans-serif;
     font-size: 1rem;
   }
