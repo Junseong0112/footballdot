@@ -8,7 +8,9 @@ function Main() {
     <AppSection>
       <Header />
       <MainSection>
-        <Outlet />
+        <section>
+          <Outlet />
+        </section>
       </MainSection>
       <Footer />
     </AppSection>
