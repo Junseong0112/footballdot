@@ -1,16 +1,15 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { ColorTheme } from "./GlobalStyle";
+import { ColorTheme, MaxWidth } from "./GlobalStyle";
 
 export const HeaderStyle = styled.header`
   width: 100%;
   height: 4.375rem;
 
   > div {
-    max-width: 64rem;
+    ${MaxWidth}
     height: 100%;
     padding: 0.625rem;
-    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 
 export const ColorTheme = {
   black: "#0F0F0F",
@@ -7,6 +7,7 @@ export const ColorTheme = {
   green2: "#008170",
   white: "#ffffff",
   red: "#BE3144",
+  gray: "#757b80",
 };
 
 export const FontWeight = {
@@ -14,6 +15,11 @@ export const FontWeight = {
   regular: "400",
   light: "200",
 };
+
+export const MaxWidth = css`
+  max-width: 64rem;
+  margin: 0 auto;
+`;
 
 export const GlobalStyle = createGlobalStyle`
   *{

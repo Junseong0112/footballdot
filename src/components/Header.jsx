@@ -14,8 +14,8 @@ function Header() {
   const LoginDisplay = () => {
     return (
       <LoginNav>
-        <Link to="login">Sign In</Link>
-        <Link to="signup">Sign Up</Link>
+        <Link to="login">로그인</Link>
+        <Link to="signup">회원가입</Link>
       </LoginNav>
     );
   };
