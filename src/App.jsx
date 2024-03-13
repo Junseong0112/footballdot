@@ -8,6 +8,8 @@ import FeedPage from "./pages/FeedPage";
 import BoardPage from "./pages/BoardPage";
 import ChatPage from "./pages/ChatPage";
 import NewsPage from "./pages/NewsPage";
+import MyPage from "./pages/MyPage";
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="board" element={<BoardPage />} />
           <Route path="chat" element={<ChatPage />} />
           <Route path="news" element={<NewsPage />} />
+          <Route path="mypage" element={<MyPage />} />
+          <Route path="signup" element={<SignUpPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
