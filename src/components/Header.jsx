@@ -40,7 +40,7 @@ function Header() {
         <Link to="/">
           <img src={Logo} alt="logo" />
         </Link>
-        <LogoutDisplay />
+        <LoginDisplay />
       </div>
     </HeaderStyle>
   );

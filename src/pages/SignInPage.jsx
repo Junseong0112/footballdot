@@ -1,7 +1,7 @@
 import SignForm from "../components/SignForm";
 
 function SignInPage() {
-  return <SignForm signValue="SIGN IN" />;
+  return <SignForm isSignUp={false} />;
 }
 
 export default SignInPage;
