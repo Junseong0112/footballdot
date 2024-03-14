@@ -87,10 +87,6 @@ export const MenuLink = styled(NavLink)`
 `;
 
 export const LoginNav = styled.nav`
-  display: flex;
-  align-items: center;
-  gap: 1.5625rem;
-
   > a {
     display: block;
     padding: 0.625rem 1.5625rem;

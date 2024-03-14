@@ -1,5 +1,7 @@
+import SignForm from "../components/SignForm";
+
 function SignUpPage() {
-  return <h3>회원가입 페이지</h3>;
+  return <SignForm signValue="SIGN UP" />;
 }
 
 export default SignUpPage;

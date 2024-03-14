@@ -3,19 +3,18 @@ import Logo from "../assets/logo.svg";
 import { HeaderStyle, LogoutNav, MenuLink, LoginNav } from "../styles/Header";
 
 const INITIALIZE_MENU = [
-  ["feed", "나의피드"],
-  ["board", "커뮤니티"],
-  ["chat", "수다방"],
-  ["news", "해외뉴스"],
-  ["mypage", "마이페이지"],
+  ["feed", "MyFeed"],
+  ["board", "Board"],
+  ["chat", "Chat"],
+  ["news", "News"],
+  ["mypage", "MyPage"],
 ];
 
 function Header() {
   const LoginDisplay = () => {
     return (
       <LoginNav>
-        <Link to="login">로그인</Link>
-        <Link to="signup">회원가입</Link>
+        <Link to="signin">Get Started</Link>
       </LoginNav>
     );
   };
@@ -23,7 +22,7 @@ function Header() {
   const LogoutDisplay = () => {
     return (
       <LogoutNav>
-        <button>로그아웃</button>
+        <button>LogOut</button>
         <ul>
           {INITIALIZE_MENU.map((menu, idx) => (
             <li key={idx}>
