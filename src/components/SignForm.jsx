@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Button from "./Button";
 import Input from "./Input";
 import { useSignValueStore } from "../store/store";
+import { SignFormStyle } from "../styles/SignForm";
 
 export default function SignForm({ isSignUp }) {
   const { values, setValues } = useSignValueStore();
@@ -20,16 +21,21 @@ export default function SignForm({ isSignUp }) {
   }, []);
 
   return (
-    <>
+    <SignFormStyle>
       <h1>{isSignUp ? "SIGN UP" : "SIGN IN"}</h1>
-      <div>
-        <Link to="/signin">SIGN IN</Link>
-        <Link to="/signup">SIGN UP</Link>
-      </div>
+      <ul className="links">
+        <li>
+          <NavLink to="/signin">SIGN IN</NavLink>
+        </li>
+        <li>
+          <NavLink to="/signup">SIGN UP</NavLink>
+        </li>
+      </ul>
       <form ref={formRef}>
         <article>
           <Input
             type="text"
+            id="username"
             name="username"
             placeholder="Email"
             value={values.username}
@@ -38,6 +44,7 @@ export default function SignForm({ isSignUp }) {
           <Input
             type="password"
             name="password"
+            id="password"
             placeholder="Password"
             value={values.password}
             onChange={handleChange}
@@ -46,6 +53,7 @@ export default function SignForm({ isSignUp }) {
             <Input
               type="password"
               name="repeatPassword"
+              id="repeatPassword"
               placeholder="Repeat password"
               value={values.repeatPassword}
               onChange={handleChange}
@@ -54,19 +62,17 @@ export default function SignForm({ isSignUp }) {
         </article>
         <Button>{isSignUp ? "Sign up" : "Sign in"}</Button>
       </form>
-      <div>
-        <p>OR</p>
-      </div>
-      <article>
-        <Button>
+      <p className="separator">OR</p>
+      <article className="icon_btn">
+        <Button className="google_btn">
           <FaGoogle />
           {"Sign in with Google"}
         </Button>
-        <Button>
+        <Button className="github_btn">
           <FaGithub />
           {"Sign in with GitHub"}
         </Button>
       </article>
-    </>
+    </SignFormStyle>
   );
 }
