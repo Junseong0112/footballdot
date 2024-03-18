@@ -5,6 +5,7 @@ import Button from "./Button";
 import Input from "./Input";
 import { useSignValueStore } from "../store/store";
 import { SignFormStyle } from "../styles/SignForm";
+import { signInWithGithub, signInWithGoogle } from "../api/oauth";
 
 export default function SignForm({ isSignUp }) {
   const { values, setValues } = useSignValueStore();
@@ -12,7 +13,6 @@ export default function SignForm({ isSignUp }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ [name]: value });
-    console.log(name, value);
   };
   const formRef = useRef();
 
@@ -63,17 +63,21 @@ export default function SignForm({ isSignUp }) {
         </article>
         <Button>{isSignUp ? "Sign up" : "Sign in"}</Button>
       </form>
-      <p className="separator">OR</p>
-      <article className="icon_btn">
-        <Button className="google_btn">
-          <FaGoogle />
-          {"Sign in with Google"}
-        </Button>
-        <Button className="github_btn">
-          <FaGithub />
-          {"Sign in with GitHub"}
-        </Button>
-      </article>
+      {!isSignUp && (
+        <>
+          <p className="separator">OR</p>
+          <article className="icon_btn">
+            <Button className="google_btn" onClick={signInWithGoogle}>
+              <FaGoogle />
+              {"Sign in with Google"}
+            </Button>
+            <Button className="github_btn" onClick={signInWithGithub}>
+              <FaGithub />
+              {"Sign in with GitHub"}
+            </Button>
+          </article>
+        </>
+      )}
     </SignFormStyle>
   );
 }
