@@ -12,6 +12,7 @@ export default function SignForm({ isSignUp }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ [name]: value });
+    console.log(name, value);
   };
   const formRef = useRef();
 

@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { ColorTheme } from "./GlobalStyle";
+import { ColorTheme, FontWeight } from "./GlobalStyle";
 
 const maxWdth = css`
   max-width: 680px;
@@ -23,7 +23,7 @@ export const SignFormStyle = styled.div`
     li {
       a {
         color: #0f132a;
-        font-weight: bolder;
+        font-weight: ${FontWeight["bold"]};
         text-align: center;
         cursor: pointer;
         transition: 0.2s linear;
@@ -71,7 +71,7 @@ export const SignFormStyle = styled.div`
       border: none;
       cursor: pointer;
       font-size: 14px;
-      box-shadow: 0 15px 30px rgba(233, 30, 99, 0.36);
+      box-shadow: 0 10px 20px rgba(233, 30, 99, 0.36);
       transition: 0.2s linear;
       &:hover {
         box-shadow: 0 0 0 rgba(233, 30, 99, 0);
@@ -124,26 +124,28 @@ export const SignFormStyle = styled.div`
       border-radius: 8px;
       border: none;
       line-height: 40px;
-      color: ${ColorTheme["white"]};
       gap: 5px;
       > svg {
         font-size: 20px;
       }
     }
     .google_btn {
-      background: #5b90f0;
-      box-shadow: 0 15px 30px rgba(91, 144, 240, 0.36);
+      color: ${ColorTheme["gray"]};
+      background: transparent;
+      border: 1px solid ${ColorTheme["gray"]};
+      box-shadow: 0 5px 10px rgba(111, 111, 111, 0.36);
       transition: 0.2s linear;
       &:hover {
-        box-shadow: 0 0 0 rgba(91, 144, 240, 0);
+        box-shadow: 0 2px 4px rgba(111, 111, 111, 0.11);
       }
     }
     .github_btn {
+      color: ${ColorTheme["white"]};
       background: #25282d;
-      box-shadow: 0 15px 30px rgba(37, 40, 45, 0.36);
+      box-shadow: 0 5px 10px rgba(37, 40, 45, 0.36);
       transition: 0.2s linear;
       &:hover {
-        box-shadow: 0 0 0 rgba(37, 40, 45, 0);
+        box-shadow: 0 2px 4px rgba(37, 40, 45, 0.11);
       }
     }
   }
