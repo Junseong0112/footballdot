@@ -5,7 +5,7 @@ import Button from "./Button";
 import Input from "./Input";
 import { useSignValueStore } from "../store/store";
 import { SignFormStyle } from "../styles/SignForm";
-import { signInWithGithub, signInWithGoogle } from "../api/oauth";
+import { handleOAuthLogin } from "../api/oauth";
 
 export default function SignForm({ isSignUp }) {
   const { values, setValues } = useSignValueStore();
@@ -67,11 +67,17 @@ export default function SignForm({ isSignUp }) {
         <>
           <p className="separator">OR</p>
           <article className="icon_btn">
-            <Button className="google_btn" onClick={signInWithGoogle}>
+            <Button
+              className="google_btn"
+              onClick={() => handleOAuthLogin("google")}
+            >
               <FaGoogle />
               {"Sign in with Google"}
             </Button>
-            <Button className="github_btn" onClick={signInWithGithub}>
+            <Button
+              className="github_btn"
+              onClick={() => handleOAuthLogin("github")}
+            >
               <FaGithub />
               {"Sign in with GitHub"}
             </Button>

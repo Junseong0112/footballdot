@@ -11,27 +11,23 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 //   });
 // }
 
-export async function signInWithGithub() {
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "github",
-  });
+export async function handleOAuthLogin(provider) {
+  const { error } =
+    provider === "github"
+      ? await supabase.auth.signInWithOAuth({
+          provider: provider,
+        })
+      : await supabase.auth.signInWithOAuth({
+          provider: "google",
+          options: {
+            queryParams: {
+              access_type: "offline",
+              prompt: "consent",
+            },
+          },
+        });
 
-  if (data) alert("로그인이 완료되었습니다");
-  if (error) console.log("error : ", error);
-}
-
-export async function signInWithGoogle() {
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-      queryParams: {
-        access_type: "offline",
-        // prompt: "consent",
-      },
-    },
-  });
-  if (data) alert("로그인이 완료되었습니다");
-  if (error) console.log("error : ", error);
+  if (error) console.log("Error: ", error.message);
 }
 
 export async function signOut() {

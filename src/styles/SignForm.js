@@ -1,14 +1,14 @@
 import styled, { css } from "styled-components";
 import { ColorTheme, FontWeight } from "./GlobalStyle";
 
-const maxWdth = css`
+const maxWidth = css`
   max-width: 680px;
   width: 100%;
 `;
 
 export const SignFormStyle = styled.div`
   margin: 120px auto;
-  ${maxWdth}
+  ${maxWidth}
   > h1 {
     color: ${ColorTheme["red"]};
     font-size: 48px;
@@ -39,11 +39,11 @@ export const SignFormStyle = styled.div`
   }
 
   form {
-    ${maxWdth}
+    ${maxWidth}
     margin: 40px auto 10px;
     article {
       input {
-        ${maxWdth}
+        ${maxWidth}
         display: block;
         height: 50px;
         margin: 20px auto;
@@ -61,7 +61,7 @@ export const SignFormStyle = styled.div`
       }
     }
     button {
-      ${maxWdth}
+      ${maxWidth}
       background: ${ColorTheme["red"]};
       color: ${ColorTheme["white"]};
       display: block;
@@ -80,7 +80,7 @@ export const SignFormStyle = styled.div`
   }
 
   .separator {
-    ${maxWdth}
+    ${maxWidth}
     display: block;
     margin: 30px auto 10px;
     text-align: center;
@@ -113,7 +113,7 @@ export const SignFormStyle = styled.div`
 
   .icon_btn {
     button {
-      ${maxWdth}
+      ${maxWidth}
       display: flex;
       justify-content: center;
       align-items: center;
