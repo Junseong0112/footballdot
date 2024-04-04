@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { supabase } from "../lib/api";
 
 export const useSignValueStore = create((set) => ({
   values: {
@@ -6,8 +7,60 @@ export const useSignValueStore = create((set) => ({
     password: "",
     repeatPassword: "",
   },
+
   setValues: (newValues) =>
     set((state) => ({
       values: { ...state.values, ...newValues },
     })),
+}));
+
+export const useAuthStore = create((set) => ({
+  errorMessage: "",
+
+  // 이메일 회원가입
+  handleSignUp: async (username, password, repeatPassword) => {
+    console.log(username, password, repeatPassword);
+    if (password !== repeatPassword) {
+      set({ errorMessage: "비밀번호가 일치하지 않습니다." });
+    }
+
+    const { error } = await supabase.auth.signUp({
+      email: username,
+      password: password,
+    });
+    if (error) set({ errorMessage: error.message });
+  },
+
+  // 이메일 로그인
+  handleSignIn: async (username, password) => {
+    const { error } = await supabase.auth.signInWithPassword({
+      email: username,
+      password: password,
+    });
+
+    if (error) set({ errorMessage: error.message });
+  },
+
+  // OAuth 로그인
+  handleOAuthLogin: async (provider) => {
+    const { error } =
+      provider === "github"
+        ? await supabase.auth.signInWithOAuth({ provider: provider })
+        : await supabase.auth.signInWithOAuth({
+            provider: provider,
+            options: {
+              queryParams: {
+                access_type: "offline",
+                prompt: "consent",
+              },
+            },
+          });
+    if (error) set({ errorMessage: error.message });
+  },
+
+  // 로그아웃
+  handleSignOut: async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) set({ errorMessage: error.message });
+  },
 }));

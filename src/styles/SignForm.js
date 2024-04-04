@@ -41,41 +41,40 @@ export const SignFormStyle = styled.div`
   form {
     ${maxWidth}
     margin: 40px auto 10px;
-    article {
-      input {
-        ${maxWidth}
-        display: block;
-        height: 50px;
-        margin: 20px auto;
-        border-radius: 8px;
-        border: none;
-        background: rgba(15, 19, 42, 0.1);
-        color: rgba(15, 19, 42, 0.3);
-        padding: 0 0 0 15px;
-        font-size: 14px;
-        &:focus,
-        &:active {
-          border: none;
-          color: #0f132a;
-        }
-      }
-    }
-    button {
+
+    input {
       ${maxWidth}
-      background: ${ColorTheme["red"]};
-      color: ${ColorTheme["white"]};
       display: block;
       height: 50px;
+      margin: 20px auto;
       border-radius: 8px;
-      margin: 0 auto;
       border: none;
-      cursor: pointer;
+      background: rgba(15, 19, 42, 0.1);
+      color: rgba(15, 19, 42, 0.3);
+      padding: 0 0 0 15px;
       font-size: 14px;
-      box-shadow: 0 10px 20px rgba(233, 30, 99, 0.36);
-      transition: 0.2s linear;
-      &:hover {
-        box-shadow: 0 0 0 rgba(233, 30, 99, 0);
+      &:focus,
+      &:active {
+        border: none;
+        color: #0f132a;
       }
+    }
+  }
+  .input_btn {
+    ${maxWidth}
+    background: ${ColorTheme["red"]};
+    color: ${ColorTheme["white"]};
+    display: block;
+    height: 50px;
+    border-radius: 8px;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 10px 20px rgba(233, 30, 99, 0.36);
+    transition: 0.2s linear;
+    &:hover {
+      box-shadow: 0 0 0 rgba(233, 30, 99, 0);
     }
   }
 

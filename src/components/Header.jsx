@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import { HeaderStyle, LogoutNav, MenuLink, LoginNav } from "../styles/Header";
-import { signOut, supabase } from "../api/oauth";
+import { supabase } from "../lib/api";
 import { useState, useEffect } from "react";
+import { useAuthStore } from "../store/store";
 
 const INITIALIZE_MENU = [
   ["feed", "MyFeed"],
@@ -13,6 +14,7 @@ const INITIALIZE_MENU = [
 ];
 
 function Header() {
+  const { handleSignOut } = useAuthStore((state) => state);
   const [session, setSession] = useState(null);
 
   useEffect(() => {
@@ -38,7 +40,7 @@ function Header() {
   const LogoutDisplay = () => {
     return (
       <LogoutNav>
-        <button onClick={signOut}>LogOut</button>
+        <button onClick={handleSignOut}>LogOut</button>
         <ul>
           {INITIALIZE_MENU.map((menu, idx) => (
             <li key={idx}>
