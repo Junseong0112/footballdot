@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import { HeaderStyle, LogoutNav, MenuLink, LoginNav } from "../styles/Header";
 import { supabase } from "../lib/api";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAuthStore } from "../store/store";
 
 const INITIALIZE_MENU = [
@@ -14,8 +14,7 @@ const INITIALIZE_MENU = [
 ];
 
 function Header() {
-  const { handleSignOut } = useAuthStore((state) => state);
-  const [session, setSession] = useState(null);
+  const { handleSignOut, session, setSession } = useAuthStore();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -27,7 +26,9 @@ function Header() {
       setSession(session);
     });
     return () => subscription.unsubscribe();
-  }, []);
+  }, [setSession]);
+
+  console.log(session);
 
   const LoginDisplay = () => {
     return (

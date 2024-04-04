@@ -16,6 +16,9 @@ export const useSignValueStore = create((set) => ({
 
 export const useAuthStore = create((set) => ({
   errorMessage: "",
+  session: null,
+
+  setSession: (session) => set({ session: session }),
 
   // 이메일 회원가입
   handleSignUp: async (username, password, repeatPassword) => {

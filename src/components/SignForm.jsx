@@ -7,9 +7,9 @@ import { useAuthStore, useSignValueStore } from "../store/store";
 import { SignFormStyle } from "../styles/SignForm";
 
 export default function SignForm({ isSignUp }) {
-  const { values, setValues } = useSignValueStore((state) => state);
+  const { values, setValues } = useSignValueStore();
   const { handleSignUp, handleSignIn, errorMessage, handleOAuthLogin } =
-    useAuthStore((state) => state);
+    useAuthStore();
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
