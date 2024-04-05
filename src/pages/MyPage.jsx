@@ -1,53 +1,54 @@
 import { useEffect, useState } from "react";
 import { useAuthStore } from "../store/store";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../lib/api";
 import Avatar from "../components/Avatar";
 
 function MyPage() {
-  const [loading, setLoading] = useState(true);
-  const [username, setUsername] = useState(null);
-  const [avatar, setAvatar] = useState(null);
-  const [userEmail, setUserEmail] = useState(""); // 이메일 상태 추가
+  const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { session } = useAuthStore();
   const { user } = session || {};
+  // 캐시에 저장된 쿼리를 무효화하기 위해, stale time의 개요 없이 stale 상태로 만들고, 해당 데이터를 백그라운드에서 refetch하게 만들 수 있게한다.
+  const queryClient = useQueryClient();
+
+  // 유저 프로필
+  async function getUserProfile() {
+    const { data } = await supabase
+      .from("profiles")
+      .select(`username, avatar_url`)
+      .eq("id", user.id)
+      .single();
+
+    return data;
+  }
+
+  const {
+    data: profileData,
+    isPending,
+    isError,
+  } = useQuery({
+    queryKey: ["profile"],
+    queryFn: getUserProfile,
+  });
 
   useEffect(() => {
-    async function getProfile() {
-      setLoading(true);
-
-      if (!user) return;
-
-      setUserEmail(user.email); // 사용자 이메일 설정
-
-      const { data, error } = await supabase
-        .from("profiles")
-        .select(`username, avatar_url`)
-        .eq("id", user.id)
-        .single();
-
-      if (error) {
-        console.warn(error);
-      } else if (data) {
-        setUsername(data.username);
-        setAvatar(data.avatar_url);
-      }
-
-      setLoading(false);
+    if (profileData) {
+      setUsername(profileData.username);
     }
+  }, [profileData]);
 
-    getProfile();
+  const updateUserMutation = useMutation({
+    mutationFn: (avatarUrl) => updateUserProfile(avatarUrl),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
+      setLoading(false);
+    },
+  });
 
-    console.log(user);
-  }, [user]);
-
-  const updateProfile = async (event, avatarUrl) => {
-    event.preventDefault();
-
-    if (!user) return;
-
+  async function updateUserProfile(avatarUrl) {
     setLoading(true);
-
     const updates = {
       id: user.id,
       username,
@@ -55,20 +56,22 @@ function MyPage() {
       updated_at: new Date(),
     };
 
-    const { error } = await supabase.from("profiles").upsert(updates);
+    await supabase.from("profiles").upsert(updates);
+  }
 
-    if (error) {
-      alert(error.message);
-    } else {
-      setAvatar(avatarUrl);
-    }
-    setLoading(false);
+  // 프로필 업데이트
+  const updateProfile = (event, avatarUrl) => {
+    event.preventDefault();
+    updateUserMutation.mutate(avatarUrl);
   };
+
+  if (isPending) return <div>Loading...</div>;
+  if (isError) return <div>Error fetching data</div>;
 
   return (
     <form onSubmit={updateProfile}>
       <Avatar
-        url={avatar}
+        url={profileData.avatar_url}
         size={150}
         onUpload={(event, url) => {
           updateProfile(event, url);
@@ -76,7 +79,7 @@ function MyPage() {
       />
       <div>
         <label htmlFor="email">이메일</label>
-        <input id="email" type="text" value={userEmail} disabled />
+        <input id="email" type="text" value={user.email} disabled />
       </div>
       <div>
         <label htmlFor="username">닉네임</label>
@@ -89,7 +92,7 @@ function MyPage() {
         />
       </div>
       <div>
-        <button type="submit" disabled={loading}>
+        <button type="submit" disabled={isPending}>
           {loading ? "Loading ..." : "Update"}
         </button>
       </div>

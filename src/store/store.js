@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { supabase } from "../lib/api";
 
+// 회원가입 스토어
 export const useSignValueStore = create((set) => ({
   values: {
     username: "",
@@ -14,6 +15,7 @@ export const useSignValueStore = create((set) => ({
     })),
 }));
 
+//  로그인 정보 스토어
 export const useAuthStore = create((set) => ({
   errorMessage: "",
   session: null,
