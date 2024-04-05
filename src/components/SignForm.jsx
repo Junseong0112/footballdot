@@ -8,9 +8,16 @@ import { SignFormStyle } from "../styles/SignForm";
 
 export default function SignForm({ isSignUp }) {
   const { values, setValues } = useSignValueStore();
-  const { handleSignUp, handleSignIn, errorMessage, handleOAuthLogin } =
-    useAuthStore();
+  const {
+    handleSignUp,
+    handleSignIn,
+    errorMessage,
+    handleOAuthLogin,
+    session,
+  } = useAuthStore();
+
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ [name]: value });
@@ -21,7 +28,11 @@ export default function SignForm({ isSignUp }) {
   useEffect(() => {
     const form = formRef.current;
     if (form) form["username"].focus();
-  }, []);
+
+    if (session) {
+      navigate("/");
+    }
+  }, [navigate, session]);
 
   const handleSignClick = async (type) => {
     const { username, password, repeatPassword } = values;
@@ -31,7 +42,6 @@ export default function SignForm({ isSignUp }) {
     } else {
       handleSignUp(username, password, repeatPassword);
     }
-    navigate("/");
   };
 
   return (

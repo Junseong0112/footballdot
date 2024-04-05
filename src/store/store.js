@@ -19,6 +19,7 @@ export const useAuthStore = create((set) => ({
   session: null,
 
   setSession: (session) => set({ session: session }),
+  setUser: (user) => set({ user: user }),
 
   // 이메일 회원가입
   handleSignUp: async (username, password, repeatPassword) => {
@@ -31,6 +32,7 @@ export const useAuthStore = create((set) => ({
       email: username,
       password: password,
     });
+
     if (error) set({ errorMessage: error.message });
   },
 
@@ -41,7 +43,7 @@ export const useAuthStore = create((set) => ({
       password: password,
     });
 
-    if (error) set({ errorMessage: error.message });
+    if (error) set({ errorMessage: "잘못된 비밀번호 입니다." });
   },
 
   // OAuth 로그인
@@ -58,6 +60,12 @@ export const useAuthStore = create((set) => ({
               },
             },
           });
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    set({ user: user });
+
     if (error) set({ errorMessage: error.message });
   },
 

@@ -4,7 +4,7 @@ import { UnLogin } from "../styles/HomePage";
 
 function Homepage() {
   const { session } = useAuthStore();
-
+  console.log(session);
   return (
     <>
       {!session ? (
