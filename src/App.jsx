@@ -4,9 +4,6 @@ import { useAuthStore } from "./store/store";
 import "../src/styles/font.css";
 import Main from "./components/Main";
 import Homepage from "./pages/HomePage";
-import FeedPage from "./pages/FeedPage";
-import BoardPage from "./pages/BoardPage";
-import ChatPage from "./pages/ChatPage";
 import NewsPage from "./pages/NewsPage";
 import MyPage from "./pages/MyPage";
 import SignInPage from "./pages/SignInPage";
@@ -35,9 +32,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />}>
           <Route index element={<Homepage />} />
-          <Route path="feed" element={<FeedPage />} />
-          <Route path="board" element={<BoardPage />} />
-          <Route path="chat" element={<ChatPage />} />
           <Route path="news" element={<NewsPage />} />
           <Route path="mypage" element={<MyPage />} />
           <Route path="signin" element={<SignInPage />} />

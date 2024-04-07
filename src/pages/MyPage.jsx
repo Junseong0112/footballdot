@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAuthStore } from "../store/store";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import Loading from "../pages/LoadingPage";
+import Error from "../pages/ErrorPage";
 import { supabase } from "../lib/api";
 import Avatar from "../components/Avatar";
 import { MyPageForm } from "../styles/MyPage";
@@ -66,8 +68,8 @@ function MyPage() {
     updateUserMutation.mutate(avatarUrl);
   };
 
-  if (isPending) return <div>Loading...</div>;
-  if (isError) return <div>Error fetching data</div>;
+  if (isPending) return <Loading />;
+  if (isError) return <Error />;
 
   return (
     <MyPageForm onSubmit={updateProfile}>

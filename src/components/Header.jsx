@@ -4,9 +4,6 @@ import { HeaderStyle, LogoutNav, MenuLink, LoginNav } from "../styles/Header";
 import { useAuthStore } from "../store/store";
 
 const INITIALIZE_MENU = [
-  ["feed", "MyFeed"],
-  ["board", "Board"],
-  ["chat", "Chat"],
   ["news", "News"],
   ["mypage", "MyPage"],
 ];
