@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/api";
+import { AvatarDiv } from "../styles/MyPage";
 
 function Avatar({ url, size, onUpload }) {
   const [avatarUrl, setAvatarUrl] = useState(null);
@@ -54,7 +55,7 @@ function Avatar({ url, size, onUpload }) {
   }
 
   return (
-    <div>
+    <AvatarDiv>
       {avatarUrl ? (
         <img
           src={avatarUrl}
@@ -74,7 +75,7 @@ function Avatar({ url, size, onUpload }) {
           disabled={uploading}
         />
       </div>
-    </div>
+    </AvatarDiv>
   );
 }
 

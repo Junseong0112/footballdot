@@ -3,6 +3,7 @@ import { useAuthStore } from "../store/store";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../lib/api";
 import Avatar from "../components/Avatar";
+import { MyPageForm } from "../styles/MyPage";
 
 function MyPage() {
   const [username, setUsername] = useState("");
@@ -69,10 +70,11 @@ function MyPage() {
   if (isError) return <div>Error fetching data</div>;
 
   return (
-    <form onSubmit={updateProfile}>
+    <MyPageForm onSubmit={updateProfile}>
+      <h2>나의 페이지 수정</h2>
       <Avatar
         url={profileData.avatar_url}
-        size={150}
+        size={180}
         onUpload={(event, url) => {
           updateProfile(event, url);
         }}
@@ -96,7 +98,7 @@ function MyPage() {
           {loading ? "Loading ..." : "Update"}
         </button>
       </div>
-    </form>
+    </MyPageForm>
   );
 }
 
