@@ -1,14 +1,29 @@
 import styled, { css } from "styled-components";
 import { ColorTheme, FontWeight } from "./GlobalStyle";
+import Button from "../components/Button";
 
 const maxWidth = css`
   max-width: 680px;
   width: 100%;
 `;
 
+const formElement = css`
+  ${maxWidth}
+  margin: 20px auto;
+`;
+
+const buttonSize = css`
+  display: block;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+`;
+
 export const SignFormStyle = styled.div`
   margin: 120px auto;
   ${maxWidth}
+
   > h1 {
     color: ${ColorTheme["red"]};
     font-size: 48px;
@@ -17,9 +32,11 @@ export const SignFormStyle = styled.div`
     margin: 120px 0 80px 0;
     transition: 0.2s linear;
   }
+
   .links {
     display: flex;
     gap: 1.25rem;
+
     li {
       a {
         color: #0f132a;
@@ -28,9 +45,11 @@ export const SignFormStyle = styled.div`
         cursor: pointer;
         transition: 0.2s linear;
         opacity: 0.6;
+
         &:hover {
           opacity: 1;
         }
+
         &.active {
           opacity: 1;
         }
@@ -39,20 +58,15 @@ export const SignFormStyle = styled.div`
   }
 
   form {
-    ${maxWidth}
-    margin: 40px auto 10px;
+    ${formElement}
 
     input {
-      ${maxWidth}
-      display: block;
-      height: 50px;
-      margin: 20px auto;
-      border-radius: 8px;
-      border: none;
+      ${formElement}
+      ${buttonSize}
       background: rgba(15, 19, 42, 0.1);
       color: rgba(15, 19, 42, 0.3);
       padding: 0 0 0 15px;
-      font-size: 14px;
+
       &:focus,
       &:active {
         border: none;
@@ -60,19 +74,17 @@ export const SignFormStyle = styled.div`
       }
     }
   }
+
   .input_btn {
-    ${maxWidth}
+    ${formElement}
+    ${buttonSize}
     background: ${ColorTheme["red"]};
     color: ${ColorTheme["white"]};
-    display: block;
-    height: 50px;
-    border-radius: 8px;
-    margin: 0 auto;
-    border: none;
     cursor: pointer;
-    font-size: 14px;
+
     box-shadow: 0 10px 20px rgba(233, 30, 99, 0.36);
     transition: 0.2s linear;
+
     &:hover {
       box-shadow: 0 0 0 rgba(233, 30, 99, 0);
     }
@@ -89,63 +101,58 @@ export const SignFormStyle = styled.div`
     color: rgba(15, 19, 42, 0.4);
     font-size: 13px;
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: 8px;
-      left: 0;
-      background: rgba(15, 19, 42, 0.2);
-      height: 1px;
-      width: 45%;
-    }
-
+    &::before,
     &::after {
       content: "";
       position: absolute;
       top: 8px;
-      right: 0;
       background: rgba(15, 19, 42, 0.2);
       height: 1px;
       width: 45%;
     }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
+  }
+`;
+
+export const AuthIcons = styled(Button)`
+  ${formElement}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  height: 50px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 8px;
+  line-height: 40px;
+  gap: 5px;
+  transition: 0.2s linear;
+  border: ${({ className }) =>
+    className === "github_btn" ? "none" : `1px solid ${ColorTheme["gray"]}`};
+  background: ${({ className }) =>
+    className === "github_btn" ? "#25282d" : "transparent"};
+  color: ${({ className }) =>
+    className === "github_btn" ? ColorTheme["white"] : ColorTheme["gray"]};
+  box-shadow: ${({ className }) =>
+    className === "github_btn"
+      ? "0 5px 10px rgba(37, 40, 45, 0.36)"
+      : "0 5px 10px rgba(111, 111, 111, 0.36)"};
+
+  &:hover {
+    box-shadow: ${({ className }) =>
+      className === "github_btn"
+        ? "0 2px 4px rgba(37, 40, 45, 0.11)"
+        : "0 2px 4px rgba(111, 111, 111, 0.11)"};
   }
 
-  .icon_btn {
-    button {
-      ${maxWidth}
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 20px auto;
-      height: 50px;
-      cursor: pointer;
-      font-size: 14px;
-      border-radius: 8px;
-      border: none;
-      line-height: 40px;
-      gap: 5px;
-      > svg {
-        font-size: 20px;
-      }
-    }
-    .google_btn {
-      color: ${ColorTheme["gray"]};
-      background: transparent;
-      border: 1px solid ${ColorTheme["gray"]};
-      box-shadow: 0 5px 10px rgba(111, 111, 111, 0.36);
-      transition: 0.2s linear;
-      &:hover {
-        box-shadow: 0 2px 4px rgba(111, 111, 111, 0.11);
-      }
-    }
-    .github_btn {
-      color: ${ColorTheme["white"]};
-      background: #25282d;
-      box-shadow: 0 5px 10px rgba(37, 40, 45, 0.36);
-      transition: 0.2s linear;
-      &:hover {
-        box-shadow: 0 2px 4px rgba(37, 40, 45, 0.11);
-      }
-    }
+  > svg {
+    font-size: 20px;
   }
 `;

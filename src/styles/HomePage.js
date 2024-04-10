@@ -13,7 +13,7 @@ const Fade = keyframes`
   }
 `;
 
-export const UnLogin = styled.div`
+export const UnLoginSection = styled.div`
   padding: 6.25rem 0;
   display: flex;
   flex-direction: column;
@@ -50,6 +50,23 @@ export const UnLogin = styled.div`
 
     &:hover {
       transform: scale(1);
+    }
+  }
+`;
+
+export const LoginSection = styled.div`
+  > article {
+    text-align: center;
+    border-bottom: 1px solid ${ColorTheme["green1"]};
+    padding-bottom: 1.25rem;
+
+    h2 {
+      font-size: 2.375rem;
+      margin-bottom: 1.25rem;
+    }
+    p {
+      font-size: 1.375rem;
+      letter-spacing: 1.2px;
     }
   }
 `;
