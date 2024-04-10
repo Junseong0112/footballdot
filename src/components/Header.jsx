@@ -4,6 +4,7 @@ import { HeaderStyle, LogoutNav, MenuLink, LoginNav } from "../styles/Header";
 import { useAuthStore } from "../store/store";
 
 const INITIALIZE_MENU = [
+  ["", "Home"],
   ["news", "News"],
   ["mypage", "MyPage"],
 ];
@@ -24,9 +25,9 @@ function Header() {
       <LogoutNav>
         <button onClick={handleSignOut}>LogOut</button>
         <ul>
-          {INITIALIZE_MENU.map((menu, idx) => (
+          {INITIALIZE_MENU.map(([link, title], idx) => (
             <li key={idx}>
-              <MenuLink to={`/${menu[0]}`}>{menu[1]}</MenuLink>
+              <MenuLink to={`/${link}`}>{title}</MenuLink>
             </li>
           ))}
         </ul>
