@@ -74,7 +74,6 @@ function MyPage() {
 
   return (
     <MyPageForm onSubmit={updateProfile}>
-      <h2>나의 페이지 수정</h2>
       <Avatar
         url={profileData.avatar_url}
         size={180}
