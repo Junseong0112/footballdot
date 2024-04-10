@@ -38,10 +38,21 @@ function Header() {
   return (
     <HeaderStyle>
       <div>
-        <Link to="/">
-          <img src={Logo} alt="logo" />
-        </Link>
-        {!session ? <LoginDisplay /> : <LogoutDisplay />}
+        {!session ? (
+          <>
+            <Link to="/signin">
+              <img src={Logo} alt="logo" />
+            </Link>
+            <LoginDisplay />
+          </>
+        ) : (
+          <>
+            <Link to="/">
+              <img src={Logo} alt="logo" />
+            </Link>
+            <LogoutDisplay />
+          </>
+        )}
       </div>
     </HeaderStyle>
   );
