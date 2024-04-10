@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import Input from "./Input";
 import { useAuthStore, useSignValueStore } from "../store/store";
-import { SignFormStyle } from "../styles/SignForm";
+import { SignFormStyle, AuthIcons } from "../styles/SignForm";
 
 export default function SignForm({ isSignUp }) {
   const { values, setValues } = useSignValueStore();
@@ -100,20 +100,20 @@ export default function SignForm({ isSignUp }) {
         <>
           <p className="separator">OR</p>
           <article className="icon_btn">
-            <Button
+            <AuthIcons
               className="google_btn"
               onClick={() => handleOAuthLogin("google")}
             >
               <FaGoogle />
               {"Sign in with Google"}
-            </Button>
-            <Button
+            </AuthIcons>
+            <AuthIcons
               className="github_btn"
               onClick={() => handleOAuthLogin("github")}
             >
               <FaGithub />
               {"Sign in with GitHub"}
-            </Button>
+            </AuthIcons>
           </article>
         </>
       )}
