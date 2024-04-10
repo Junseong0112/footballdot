@@ -34,6 +34,7 @@ function MyPage() {
   } = useQuery({
     queryKey: ["profile"],
     queryFn: getUserProfile,
+    staleTime: 60 * 1000,
   });
 
   useEffect(() => {
